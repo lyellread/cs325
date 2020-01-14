@@ -43,13 +43,24 @@ def merge(l, r, o):
 
 def mergesort(x):
 
-	if not len(x) == 1:
-		#run on the left side
-		mergesort()
-		
+	if len(x) > 1:
 
+		#generate midpoint and split list
+		m = int(len(x)/2)
+		l = x[:m]		
+		r = x[m:]
 
+		#recursively mergesort left
+		mergesort(l)
 
+		#recursively mergesort right
+		mergesort(r)
+
+		#merge left and right
+		o = []
+		merge(l, r, o)
+
+		return x
 
 
 if __name__ == "__main__":
@@ -66,6 +77,7 @@ if __name__ == "__main__":
 		lines = [x.split(" ") for x in f.readlines()]
 		f.close()
 
+	
 	result = [mergesort(x) for x in lines]
 
 	#print result
