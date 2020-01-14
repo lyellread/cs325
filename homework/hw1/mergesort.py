@@ -79,8 +79,13 @@ if __name__ == "__main__":
 	result = [mergesort(x) for x in lines]
 
 	#print result
-	for x in result:
-		printarray(x)
+	# for x in result:
+	# 	printarray(x)
+
+	#save results
+	with open("merge.txt", "w") as f:
+		for x in result:
+			f.write(' '.join([str(z) for z in x]) + "\n")
 
 	exit()
 
