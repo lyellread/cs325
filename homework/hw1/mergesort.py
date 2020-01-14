@@ -63,19 +63,22 @@ def printarray (a):
 
 if __name__ == "__main__":
 
+	#arg len
 	if len(sys.argv) < 2:
 		print ("Insufficient Arguments Provided. Quitting.")
 		exit()
 
+	#file exists check
 	if not os.path.exists(sys.argv[1]):
 		print ("File Provided Does Not Exist. Quitting.")
 		exit()
 
+	#open, read, close file
 	with open(sys.argv[1], "r") as f:
 		lines = [ [int(y) for y in x.replace('\n', '').split(" ")] for x in f.readlines()]
 		f.close()
 
-
+	#generate results list
 	result = [mergesort(x) for x in lines]
 
 	#print result
