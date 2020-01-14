@@ -46,7 +46,7 @@ def printarray (a):
 if __name__ == "__main__":
 
 	#define list of lengths
-	lengths = [250, 500, 1000, 2000, 2500, 3000, 3500, 4000, 4500, 5000]
+	lengths = [500, 1000, 1250, 1500, 1750, 2000, 2250, 2500, 2750, 3000]
 	#lengths = [1000]
 
 	print('\n'.join([str(x) for x in lengths]))
