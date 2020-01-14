@@ -2,14 +2,12 @@
 
 # Merge Sort Program
 # Lyell Read / 1/13/2020
-# Citations: 
-# - 
 
-import os, sys
+
+import sys, os
 
 
 def merge(l, r, o):
-
 	if len(l) == 0 and len(r) == 0:
 		return o
 
@@ -38,30 +36,30 @@ def merge(l, r, o):
 	return merge(l, r, o)
 
 
-
-
-
 def mergesort(x):
-
 	if len(x) > 1:
-
 		#generate midpoint and split list
 		m = int(len(x)/2)
 		l = x[:m]		
 		r = x[m:]
 
 		#recursively mergesort left
-		mergesort(l)
+		l = mergesort(l)
 
 		#recursively mergesort right
-		mergesort(r)
+		r = mergesort(r)
 
 		#merge left and right
 		o = []
-		merge(l, r, o)
+		x = merge(l, r, o)
 
-		return x
+	return x
 
+
+def printarray (a):
+	for e in a:
+		print(e, end=" ")
+	print()
 
 if __name__ == "__main__":
 
@@ -74,12 +72,15 @@ if __name__ == "__main__":
 		exit()
 
 	with open(sys.argv[1], "r") as f:
-		lines = [x.split(" ") for x in f.readlines()]
+		lines = [ [int(y) for y in x.replace('\n', '').split(" ")] for x in f.readlines()]
 		f.close()
 
-	
+
 	result = [mergesort(x) for x in lines]
 
 	#print result
+	for x in result:
+		printarray(x)
+
 	exit()
 
