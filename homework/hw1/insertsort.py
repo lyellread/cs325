@@ -11,16 +11,16 @@ def insertsort(x):
 	for i in range(1, len(x)):
 
 		#if i-1 <= i; do nothing
-		if x[i-1] <= x[i]:
-			pass
+		#if x[i-1] <= x[i]:
+		#	pass
 
 		#if i-1 > i, relocate i
-		elif x[i-1] > x[i]:
+		if x[i-1] > x[i]:
 			#starting index to find slot
 			j = 0
 			
 			#iterate through until we find slot, stored in j
-			while x[i] < x[j]:
+			while x[i] > x[j]:
 				j += 1
 
 			#copy out the element we're moving
@@ -30,14 +30,14 @@ def insertsort(x):
 			#k = j
 
 			#iterate through all elements between j and i
-			while i >= j:
+			while i > j:
 				#move element at i-1 to i
 				x[i] = x[i-1]
 				i -= 1
 
 			x[j] = t
 
-			return x
+	return x
 
 def printarray (a):
 	for e in a:
