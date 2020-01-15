@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 
-# Merge Sort Program
+# Insertion Sort Program
 # Lyell Read / 1/13/2020
 
 
@@ -52,7 +52,7 @@ if __name__ == "__main__":
 
 	#open file, read and close
 	with open(sys.argv[1], "r") as f:
-		lines = [ [int(y) for y in x.replace('\n', '').split(" ")] for x in f.readlines()]
+		lines = [ [int(y) for y in x.replace('\n', '').split(" ")][1:] for x in f.readlines()]
 		f.close()
 
 	#run insertsort and generate a set of results

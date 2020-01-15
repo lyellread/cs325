@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 
-# Merge Sort Program
+# Insertion Sort Program for Time Trials
 # Lyell Read / 1/13/2020
 
 

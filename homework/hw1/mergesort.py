@@ -75,7 +75,7 @@ if __name__ == "__main__":
 
 	#open, read, close file
 	with open(sys.argv[1], "r") as f:
-		lines = [ [int(y) for y in x.replace('\n', '').split(" ")] for x in f.readlines()]
+		lines = [ [int(y) for y in x.replace('\n', '').split(" ")][1:] for x in f.readlines()]
 		f.close()
 
 	#generate results list
