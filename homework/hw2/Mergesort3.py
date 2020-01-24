@@ -7,7 +7,7 @@
 import sys, os
 
 
-def merge3(a, b, c, o):
+def merge(a, b, c, o):
 	while len(a) > 0 or len(b) > 0 or len(c) > 0:
 		if len(a) == 0 and len(b) == 0:
 			#only c remains, pop to o
@@ -69,7 +69,7 @@ def merge3(a, b, c, o):
 					c.remove(c[0])
 	return o
 
-def mergesort3(x):
+def mergesort(x):
 	if len(x) > 1:
 		#generate midpoints
 		ls = len(x)//3
@@ -79,13 +79,13 @@ def mergesort3(x):
 		b = x[ls:rs]
 		c = x[rs:]
 
-		a = mergesort3(a)
-		b = mergesort3(b)
-		c = mergesort3(c)
+		a = mergesort(a)
+		b = mergesort(b)
+		c = mergesort(c)
 
 		#merge left and right
 		o = []
-		x = merge3(a, b, c, o)
+		x = merge(a, b, c, o)
 
 	return x
 
@@ -113,7 +113,7 @@ if __name__ == "__main__":
 		f.close()
 
 	#generate results list
-	result = [mergesort3(x) for x in lines]
+	result = [mergesort(x) for x in lines]
 
 	#print result
 	# for x in result:
