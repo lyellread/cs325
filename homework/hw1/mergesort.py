@@ -8,33 +8,30 @@ import sys, os
 
 
 def merge(l, r, o):
-	if len(l) == 0 and len(r) == 0:
-		return o
+	while len(l) > 0 or len(r) > 0:
 
-	if len(r) == 0:
-		#pop top l
-		o.append(l[0])
-		l.remove(l[0])
+		if len(r) == 0:
+			#pop top l
+			o.append(l[0])
+			l.remove(l[0])
 
-	elif len(l) == 0:
-		#pop top r
-		o.append(r[0])
-		r.remove(r[0])
-
-	else:
-		if l[0] >= r[0]:
+		elif len(l) == 0:
 			#pop top r
 			o.append(r[0])
 			r.remove(r[0])
 
 		else:
-			#pop top l
-			o.append(l[0])
-			l.remove(l[0])
+			if l[0] >= r[0]:
+				#pop top r
+				o.append(r[0])
+				r.remove(r[0])
 
-	#recurse
-	return merge(l, r, o)
+			else:
+				#pop top l
+				o.append(l[0])
+				l.remove(l[0])
 
+	return o
 
 def mergesort(x):
 	if len(x) > 1:
