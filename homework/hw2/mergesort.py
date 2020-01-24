@@ -11,42 +11,81 @@ def merge(a, b, c, o):
 	while len(a) > 0 or len(b) > 0 or len(c) > 0:
 		if len(a) == 0 and len(b) == 0:
 			#only c remains, pop to o
-			o.append(l[0])
-			c.remove(l[0])
+			o.append(c[0])
+			c.remove(c[0])
 
 		elif len(a) == 0 and len(c) == 0:
 			#only b remains, pop to o
-			o.append(l[0])
-			b.remove(l[0])
+			o.append(b[0])
+			b.remove(b[0])
 
 		elif len(b) == 0 and len(c) == 0:
 			#only a remains, pop to o
-			o.append(l[0])
-			a.remove(l[0])
+			o.append(a[0])
+			a.remove(a[0])
 
 		else:
 			#at least two lists are full:
-			
 
+			if len(a) == 0:
+				if b[0] > c[0]:
+					o.append(c[0])
+					c.remove(c[0])
+				else:
+					o.append(b[0])
+					b.remove(b[0])
 
+			elif len(b) == 0:
+				if c[0] > a[0]:
+					o.append(a[0])
+					a.remove(a[0])
+				else:
+					o.append(c[0])
+					c.remove(c[0])
+
+			elif len(c) == 0:
+				if a[0] > b[0]:
+					o.append(b[0])
+					b.remove(b[0])
+				else:
+					o.append(a[0])
+					a.remove(a[0])
+
+			else:
+
+				t = [a[0], b[0], c[0]]
+				p = min(t)
+
+				if p == a[0]:
+					o.append(a[0])
+					a.remove(a[0])
+
+				elif p == b[0]:
+					o.append(b[0])
+					b.remove(b[0])
+
+				else:
+					o.append(c[0])
+					c.remove(c[0])
 	return o
 
 def mergesort(x):
 	if len(x) > 1:
-		#generate midpoint and split list
-		m = int(len(x)/2)
-		l = x[:m]		
-		r = x[m:]
+		#generate midpoints
+		ls = len(x)//3
+		rs = ls + (len(x)-ls)//2
 
-		#recursively mergesort left
-		l = mergesort(l)
+		a = x[:ls]
+		b = x[ls:rs]
+		c = x[rs:]
 
-		#recursively mergesort right
-		r = mergesort(r)
+		a = mergesort(a)
+		b = mergesort(b)
+		c = mergesort(c)
 
 		#merge left and right
 		o = []
-		x = merge(l, r, o)
+		x = merge(a, b, c, o)
 
 	return x
 
