@@ -4,10 +4,10 @@
 # Lyell Read / 1/23/2020
 
 
-import sys, os
+import sys, os, random, time
 
 
-def merge(a, b, c, o):
+def merge3(a, b, c, o):
 	#iterate until we have all empty lists
 	while len(a) > 0 or len(b) > 0 or len(c) > 0:
 		#if any two lists are empty, pop from the one non empty
@@ -83,7 +83,7 @@ def merge(a, b, c, o):
 	#return our completed list
 	return o
 
-def mergesort(x):
+def mergesort3(x):
 	if len(x) > 1:
 		#generate midpoints of the initial list
 		#left one will be first third
@@ -98,50 +98,43 @@ def mergesort(x):
 		c = x[rs:]
 
 		#recursively call mergesort on those three
-		a = mergesort(a)
-		b = mergesort(b)
-		c = mergesort(c)
+		a = mergesort3(a)
+		b = mergesort3(b)
+		c = mergesort3(c)
 
 		#merge a b and c to form x.
 		o = []
-		x = merge(a, b, c, o)
+		x = merge3(a, b, c, o)
 
 	return x
 
 
-def printarray (a):
-	for e in a:
-		print(e, end=" ")
-	print()
+def listgen(n):
+	#new blank list
+	return [random.randint(0, 10000) for x in range (0, n)]
+
 
 if __name__ == "__main__":
 
-	#arg len
-	if len(sys.argv) < 2:
-		print ("Insufficient Arguments Provided. Quitting.")
-		exit()
+	#define list of lengths
+	#lengths = [500, 1000, 1250, 1500, 1750, 2000, 2250, 2500, 2750, 3000]
+	lengths = [100000]
+	print('\n'.join([str(x) for x in lengths]))
 
-	#file exists check
-	if not os.path.exists(sys.argv[1]):
-		print ("File Provided Does Not Exist. Quitting.")
-		exit()
+	for n in lengths:
+		l = listgen(n)
 
-	#open, read, close file
-	with open(sys.argv[1], "r") as f:
-		lines = [ [int(y) for y in x.replace('\n', '').split(" ")][1:] for x in f.readlines()]
-		f.close()
+		#get starting time
+		starttime = time.time()
 
-	#generate results list
-	result = [mergesort(x) for x in lines]
+		#perform a mergesort
+		x = mergesort3(l)
 
-	#print result
-	# for x in result:
-	# 	printarray(x)
+		#get end time
+		endtime = time.time()
 
-	#save results
-	with open("merge.txt", "w") as f:
-		for x in result:
-			f.write(' '.join([str(z) for z in x]) + "\n")
+		#print message to user
+		print(endtime - starttime)
 
 	exit()
 

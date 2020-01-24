@@ -7,7 +7,7 @@
 import sys, os
 
 
-def merge(a, b, c, o):
+def merge3(a, b, c, o):
 	#iterate until we have all empty lists
 	while len(a) > 0 or len(b) > 0 or len(c) > 0:
 		#if any two lists are empty, pop from the one non empty
@@ -83,7 +83,7 @@ def merge(a, b, c, o):
 	#return our completed list
 	return o
 
-def mergesort(x):
+def mergesort3(x):
 	if len(x) > 1:
 		#generate midpoints of the initial list
 		#left one will be first third
@@ -98,13 +98,13 @@ def mergesort(x):
 		c = x[rs:]
 
 		#recursively call mergesort on those three
-		a = mergesort(a)
-		b = mergesort(b)
-		c = mergesort(c)
+		a = mergesort3(a)
+		b = mergesort3(b)
+		c = mergesort3(c)
 
 		#merge a b and c to form x.
 		o = []
-		x = merge(a, b, c, o)
+		x = merge3(a, b, c, o)
 
 	return x
 
@@ -132,7 +132,7 @@ if __name__ == "__main__":
 		f.close()
 
 	#generate results list
-	result = [mergesort(x) for x in lines]
+	result = [mergesort3(x) for x in lines]
 
 	#print result
 	# for x in result:
