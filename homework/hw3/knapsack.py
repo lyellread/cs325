@@ -37,11 +37,17 @@ def knapsack_naive(w, v, n, c):
 
 if __name__ == "__main__":
 
-	n = 8
-	o = [-sys.maxsize - 1 for x in range (0,n)]
-	o.insert(0, None)
-	p = [None, 1, 5, 8, 9, 10, 17, 17, 19]
-	c = 2
+	#16
+	w = [None, 1, 2, 4, 2, 5]
+	v = [None, 5, 3, 5, 3, 2]
+	c = 10
+	n = 5
 
-	print(optimal(n, p, o, c))
+	#40
+	w = [None, 9, 4, 4, 4, 3, 7, 9, 3, 7, 8]
+	v = [None, 3, 8, 8, 7, 7, 5, 2, 4, 6, 2]
+	c = 25
+	n = 10
+
+	print(knapsack_naive(w, v, n, c))
 
