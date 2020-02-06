@@ -59,7 +59,7 @@ def knapsack_dp(w, v, n, c, o):
 	o[n][c] = max(leave, take)
 	return max(leave, take)
 
-def run (n, c, dp, naive):
+def run (n, c, dp):
 
 	w = [0 for x in range(0, n)]
 	while sum(w) < c:
@@ -72,22 +72,17 @@ def run (n, c, dp, naive):
 
 	o = [[None for x in range(0,c+1)] for y in range(0,n+1)]
 
-	naive_start_time = time.time()
-	naive_result = knapsack_naive(w, v, n, c)
-	naive_end_time = dp_start_time = time.time()
+	dp_start_time = time.time()
 	dp_result = knapsack_dp(w, v, n, c, o)
 	dp_end_time = time.time()
 
 	print("Completed: n=", n, 
 			" c=", c, 
-			" Naive Time: ", (naive_end_time - naive_start_time), 
 			" DP Time: ", (dp_end_time - dp_start_time), 
-			" Naive Result: ", naive_result, 
 			" DP Result: ", dp_result, 
 			".")
 
 	dp.append(dp_end_time - dp_start_time)
-	naive.append(naive_end_time - naive_start_time)
 
 def printarray (a):
     for e in a:
@@ -97,16 +92,14 @@ def printarray (a):
 
 if __name__ == "__main__":
 
-	lengths = [x for x in range (5, 26)]
+	lengths = [x for x in [50, 100, 150, 200, 250, 300, 350, 400, 600, 800]]
 	
 	
 	for r in range (0, 5):
 		dp = []
-		naive = []
 		print("==== RUN ", r, " ====")
 		for x in lengths:
-			run(x,100, dp, naive)
+			run(x,100, dp)
 
 		printarray(dp)
-		printarray(naive)	
 	
