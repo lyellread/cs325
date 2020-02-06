@@ -107,6 +107,6 @@ if __name__ == "__main__":
 		for x in lengths:
 			run(x,100, dp, naive)
 
-		printarray(dp)
-		printarray(naive)	
+		#printarray(dp)
+		#printarray(naive)	
 	
