@@ -145,6 +145,8 @@ def run (filename):
 		w.insert(0, None)
 		v.insert(0, None)
 		
+		print("Test Case: " + str(x+1))
+
 		for m in range(0,family_members):
 
 			#Create our optimal nested list, None filled
@@ -154,15 +156,15 @@ def run (filename):
 
 		printarray(member_profits)
 
-		print("Test Case: " + str(x))
-		print("Total Price: " + "sum of member profits at vertain invex")
-		print("Member Items")
+		
+		print("Total Price: " + str(sum(member_profits)))
+		print("Member Totals: ")
 
 		for m in range(0,family_members):
 
-			continue
+			print(str(m+1) + " : " + str(member_profits[m]))
 
-			#print(str(m+1) + " : " + "<values go here>")
+		print()
 
 
 
