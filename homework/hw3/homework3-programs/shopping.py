@@ -19,7 +19,7 @@ def shopping(c, w, v, n, o):
 	#if capacity is 0 or n is 0 (we are at first
 	#	element), we are at base case.
 	if c == 0 or n == 0:
-		return [0, []]
+		return 0
 
 	#if the weight of the current item is more than we can
 	#	carry, we must go to the next item
@@ -40,9 +40,8 @@ def shopping(c, w, v, n, o):
 
 	take = shopping((c - w[n]), w, v, (n - 1), o)
 	#print(take, n, v)
-	take[0] = take[0] + v[n]
-	take[1].append(n)
-
+	take += v[n]
+	
 	# #the max value will be returned
 	# o[n][c] = max(leave[0], take[0])
 
@@ -57,7 +56,7 @@ def shopping(c, w, v, n, o):
 	# else:
 	# 	print("ERROR!")
 
-	if leave[0] > take[0]:
+	if leave > take:
 		#leave
 		o[n][c] = leave
 		return leave
@@ -146,6 +145,8 @@ def run (filename):
 		w.insert(0, None)
 		v.insert(0, None)
 		
+		print("Test Case: " + str(x+1))
+
 		for m in range(0,family_members):
 
 			#Create our optimal nested list, None filled
@@ -155,15 +156,15 @@ def run (filename):
 
 		printarray(member_profits)
 
-		print("Test Case: " + str(x))
-		print("Total Price: " + "sum of member profits at vertain invex")
-		print("Member Items")
+		
+		print("Total Price: " + str(sum(member_profits)))
+		print("Member Totals: ")
 
 		for m in range(0,family_members):
 
-			continue
+			print(str(m+1) + " : " + str(member_profits[m]))
 
-			#print(str(m+1) + " : " + "<values go here>")
+		print()
 
 
 
