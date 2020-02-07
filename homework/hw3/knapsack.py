@@ -61,23 +61,31 @@ def knapsack_dp(w, v, n, c, o):
 
 def run (n, c, dp, naive):
 
+	#make a list of weights with all being 0
 	w = [0 for x in range(0, n)]
+
+	#while the sum is not equal to the carrying capacity, add to a random weight
 	while sum(w) < c:
 		w[random.randint(0, len(w)-1)] += 1
 
+	#generate a bunch of random values to correspond with those weights
 	v = [random.randint(0, 50) for x in range (0, n)]
 
+	#add a 'None' at the start of those lists so indicies line up
 	w.insert(0, None)
 	v.insert(0, None)
 
+	#Create our optimal nested list, None filled
 	o = [[None for x in range(0,c+1)] for y in range(0,n+1)]
 
+	#perform the timing runs of each naive and dp
 	naive_start_time = time.time()
 	naive_result = knapsack_naive(w, v, n, c)
 	naive_end_time = dp_start_time = time.time()
 	dp_result = knapsack_dp(w, v, n, c, o)
 	dp_end_time = time.time()
 
+	#print the complete message
 	print("Completed: n=", n, 
 			" c=", c, 
 			" Naive Time: ", (naive_end_time - naive_start_time), 
@@ -86,6 +94,7 @@ def run (n, c, dp, naive):
 			" DP Result: ", dp_result, 
 			".")
 
+	#append the result lists so they include the times
 	dp.append(dp_end_time - dp_start_time)
 	naive.append(naive_end_time - naive_start_time)
 
