@@ -7,36 +7,34 @@
 import sys, os, time, random
 
 
-def knapsack_dp(w, v, n, c, o, t):
+def shopping(c, w, v, n, o):
 
-	#if we already have an entry for this n, c pair, return it
-	if o[n][c] != None:
-		return o[n][c]
+	#bottom up fill of o, optimal nested array
+	for a in range(0, n + 1):
+		for b in range (0, c + 1):
+			if a == 0 or b == 0:
+				o[a][b] = 0
+			else:
+				if w[a - 1] <= b:
+					o[a][b] = max(v[a - 1] + o[a - 1][b - w[a - 1]], o[a-1][b])
+				else:
+					o[a][b] = o[a-1][b]
 
-	#if capacity is 0 or n is 0 (we are at first
-	#	element), we are at base case.
-	if c == 0 or n == 0:
-		return 0
-		
+	temp = o[n][c]
+	c1 = c
+	print (temp)
 
-	#if the weight of the current item is more than we can
-	#	carry, we must go to the next item
-	if w[n] > c:
-		return knapsack_dp(w, v, (n - 1), c, o, t)
+	for x in range (0, n):
+		if temp <, 0:
+			break
+		if temp == o[x-1][c1]
+			continue
+		else:
+			print(x)
 
+			temp -= v[x-1]
+			c1 -= w[x-1]
 
-	#now we are sure we have an item that we *can* take. Do we
-	#	take it?
-	#what will we get if we leave it?
-	leave = knapsack_dp(w, v, (n - 1), c, o, t)
-
-	#what will we get if we take it?
-	take = knapsack_dp(w, v, (n - 1), (c - w[n]), o, t) + v[n]
-
-	#the max value will be returned
-	o[n][c] = max(leave, take)
-
-	return max(leave, take)
 
 
 def printarray (a):
@@ -125,7 +123,7 @@ def run (filename):
 
 			member_profits.append(knapsack_dp(w, v, items, f[m], o, t))
 
-			print("===> T: ", t)
+			print(t)
 
 		print("Test Case: " + str(1))
 		print("Total Price: " + str(sum(member_profits)))
