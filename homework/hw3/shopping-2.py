@@ -19,7 +19,7 @@ def shopping(c, w, v, n, o):
 	#if capacity is 0 or n is 0 (we are at first
 	#	element), we are at base case.
 	if c == 0 or n == 0:
-		return 0
+		return [0, []]
 
 	#if the weight of the current item is more than we can
 	#	carry, we must go to the next item
@@ -40,8 +40,9 @@ def shopping(c, w, v, n, o):
 
 	take = shopping((c - w[n]), w, v, (n - 1), o)
 	#print(take, n, v)
-	take += v[n]
-	
+	take[0] = take[0] + v[n]
+	take[1].append(n)
+
 	# #the max value will be returned
 	# o[n][c] = max(leave[0], take[0])
 
@@ -56,7 +57,7 @@ def shopping(c, w, v, n, o):
 	# else:
 	# 	print("ERROR!")
 
-	if leave > take:
+	if leave[0] > take[0]:
 		#leave
 		o[n][c] = leave
 		return leave
