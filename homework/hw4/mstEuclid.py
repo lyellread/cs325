@@ -30,7 +30,7 @@ def printedge(a):
 			str(a[1][0]) + 
 			", " + 
 			str(a[1][1]) + 
-			")  \tWeight:" + 
+			")     \tWeight:" + 
 			str(a[2]))
 
 def check_points (a, b, taken_edges):
