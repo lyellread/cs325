@@ -10,11 +10,23 @@ def distancebetween (a, b):
 
 	return int(math.sqrt((a[0] - b[0])**2 + (a[1] - b[1])**2))
 
+
 def printarray (a):
     for e in a:
         print(e, end="\n")
     print()
 
+def printedge(a):
+	print(" - (" + 
+			str(a[0][0]) + 
+			", " + 
+			str(a[0][1]) + 
+			") --> (" + 
+			str(a[1][0]) + 
+			", " + 
+			str(a[1][1]) + 
+			")  \tWeight:" + 
+			str(a[2]))
 
 def check_points (a, b, taken_edges):
 
@@ -59,7 +71,6 @@ def check_points (a, b, taken_edges):
 	else:
 
 		return ret
-
 
 
 def check_edge(current_edge, taken_edges):
@@ -141,12 +152,6 @@ def run(filename):
 
 	i = 0
 	edges = L_edges
-	# edges = {}
-	# for x in L_edges:
-	# 	edges[str(i)] = [str([x[0], x[1]]), str([x[1], x[0]])]
-	# 	i += 1
-
-	#print (coords, "\n", edges)
 
 	ret = mst(coords, edges)
 
@@ -155,9 +160,22 @@ def run(filename):
 	for x in ret:
 		s += x[2]
 
-	print()
-	printarray(ret)
+	print("Edges Taken:")
+	[printedge(x) for x in ret]
+	print ("\nTotal Weight Taken:", s)
 
+	a = []
+
+	for x in ret:
+		if x[0] not in a:
+			a.append(x[0])
+
+		if x[1] not in a:
+			a.append(x[1])
+
+	print("\nVertex Check:")
+	print(" - Uniqie Verticies Visited:", len(a))
+	print(" - Total Verticies Provided:", len(L_coords))
 	
 
 
