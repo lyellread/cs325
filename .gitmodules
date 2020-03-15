@@ -1,3 +1,6 @@
 [submodule "project/CS325-TSP-Project"]
 	path = project/CS325-TSP-Project
 	url = git@github.com:captainGeech42/CS325-TSP-Project.git
+[submodule "project/cs325-final-project"]
+	path = project/cs325-final-project
+	url = git@github.com:lyellread/cs325-final-project.git
