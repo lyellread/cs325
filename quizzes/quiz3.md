@@ -58,13 +58,15 @@ b) What is the running time of the algorithm?
 c) What is the approximation ratio for the approximation algorithm?
 
 > Algorithm:
-> 1. Generate empty list to store resultant values, R
-> 2. Assume E is the set of all edges in G (provided)
-> 3. While E has items:
-	> 1. Pop e from E
-	> 2. Push e_start_ and e_end_ (edge endpoints) to R
-	> 3. Pop all edges from E that start or end at e_start_or e_end_
-> 4. Return R
+```
+1. Generate empty list to store resultant values, R
+2. Assume E is the set of all edges in G (provided)
+3. While E has items:
+	1. Pop e from E
+	2. Push e_start_ and e_end_ (edge endpoints) to R
+	3. Pop all edges from E that start or end at e_start_or e_end_
+4. Return R
+```
 
 > Running Time:
 > 	O(V+E)
@@ -76,6 +78,7 @@ Consider the following decision problem:
 LONG-PATH: Given an undirected graph G = (V, E) , two vertices u and win V and a parameter k, is there a simple path in G from u to w with length at most k?
 Prove that LONG-PATH is NP-complete.
 Your Answer:
+
 > Disproof by Counterexample:
 > LONG PATH as presented is not NP-Complete: Simply applying Djikstra's Algorithm (Polynomial Time, with Worst Case O(|E|+|V|log|V|) can determine the shortest path between u and w, and a simple comparison between the path weight and k will perform the same result as LONG-PATH (if shortest path is longer than k, then the decision is there is no path; if the path length is less than k, there is a path). Therefore, this is not NP-Complete, as it can be completed in polynomial time, while NP-Complete problems cannot.
 
@@ -112,5 +115,7 @@ maximize the total fees you earn in D days.
 
 (a) What type of algorithm would you use to solve this problem? Divide and Conquer, Greedy or Dynamic Programming.
 Why?
+
 (b) Describe the algorithm verbally and give pseudo-code.
+
 (c} What is the running time of your algorithm?
